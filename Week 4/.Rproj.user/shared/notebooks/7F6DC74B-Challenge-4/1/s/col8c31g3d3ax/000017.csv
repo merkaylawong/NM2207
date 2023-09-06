@@ -1,0 +1,9 @@
+"0","# Enter code here"
+"0","comm_data. %>%"
+"0","    group_by(date)%>%"
+"0","      summarize(date, mean_sentiment = mean(sentiment))%>%"
+"0","        distinct(date, mean_sentiment) "
+"2","Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+Please use `reframe()` instead.
+When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and adjust accordingly."
+"2","`summarise()` has grouped output by 'date'. You can override using the `.groups` argument."

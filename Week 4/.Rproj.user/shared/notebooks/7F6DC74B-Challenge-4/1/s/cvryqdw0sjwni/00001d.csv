@@ -1,0 +1,12 @@
+"0","# Enter code here"
+"0","comm_data. %>%"
+"0","    group_by(date)%>%"
+"0","      summarise(date, all_char = sum(nchar(message)))%>%"
+"0","      distinct(date, all_char)%>%"
+"0","  arrange(desc(all_char))%>%"
+"0","  ungroup()%>%"
+"0","  slice(1)"
+"2","Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+Please use `reframe()` instead.
+When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and adjust accordingly."
+"2","`summarise()` has grouped output by 'date'. You can override using the `.groups` argument."
