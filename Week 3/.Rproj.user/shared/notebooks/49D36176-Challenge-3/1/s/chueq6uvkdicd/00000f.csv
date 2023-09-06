@@ -1,0 +1,8 @@
+"0","# Enter code here"
+"0","x<-c(5,10,15)"
+"0","y<-c(""apple"",""banana"",""cherry"",x)"
+"0","typeof(y)"
+"1","[1]"
+"1"," ""character"""
+"1","
+"
