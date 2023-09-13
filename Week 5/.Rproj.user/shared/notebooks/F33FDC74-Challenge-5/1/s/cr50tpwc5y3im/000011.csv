@@ -1,0 +1,6 @@
+"0","library(magick)
+"
+"2","Linking to ImageMagick 6.9.12.93
+Enabled features: cairo, freetype, fftw, ghostscript, heic, lcms, pango, raw, rsvg, webp
+Disabled features: fontconfig, x11
+"

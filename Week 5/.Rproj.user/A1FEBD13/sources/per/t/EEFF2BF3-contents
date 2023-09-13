@@ -1,0 +1,154 @@
+---
+title: "Challenge-5"
+author: "Merkayla Wong"
+date: "`13-09-2023`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Questions
+<br>
+
+#### Question-1: Local Variable Shadowing 
+
+Create an R function that defines a global variable called `x` with a value of 5. Inside the function, declare a local variable also named `x` with a value of 10. Print the value of `x` both inside and outside the function to demonstrate shadowing.
+
+**Solutions:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+x<- 5
+sprintf("The value assigned to z outside the function is %d",x)
+foo<- function(x = 2) {
+x <- 10
+return(x)
+}
+foo()
+sprintf("The final value of z after reassigning it to a different value inside the function is %d",x)
+```
+<br>
+
+#### Question-2: Modify Global Variable
+
+Create an R function that takes an argument and adds it to a global variable called `total`. Call the function multiple times with different arguments to accumulate the values in `total`.
+
+**Solutions:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+total<-0
+addition_to_total<-function(n){
+  total<<-total+n
+}
+
+addition_to_total(5)
+addition_to_total(7)
+addition_to_total(9)
+print(total)
+```
+<br>
+
+#### Question-3: Global and Local Interaction 
+
+Write an R program that includes a global variable `total` with an initial value of 100. Create a function that takes an argument, adds it to `total`, and returns the updated `total`. Demonstrate how this function interacts with the global variable.
+
+**Solutions:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+total<-100
+added_to_total<-function(n){
+  total<<-total+n
+  return(total)
+}
+added_to_total(35)
+sprintf("The final value of total after reassigning it to a different value inside the function is %d",total)
+```
+<br>
+
+#### Question-4: Nested Functions
+
+Define a function `outer_function` that declares a local variable `x` with a value of 5. Inside `outer_function`, define another function `inner_function` that prints the value of `x`. Call both functions to show how the inner function accesses the variable from the outer function's scope.
+
+**Solutions:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+outer_function<- function(){
+  x<-5
+  inner_function<- function(){
+    print(x)
+  }
+  inner_function()
+}
+outer_function()
+```
+<br>
+
+#### Question-5: Meme Generator Function
+
+Create a function that takes a text input and generates a humorous meme with the text overlaid on an image of your choice. You can use the `magick` package for image manipulation. You can find more details about the commands offered by the package, with some examples of annotating images here: https://cran.r-project.org/web/packages/magick/vignettes/intro.html
+
+**Solutions:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+library(magick)
+
+create_meme <- function(image_path, text) {
+
+  img <- image_read(image_path)
+  
+  text_color <- "white"
+  text_size <- 40
+  text_font <- "comic sans"
+  
+  image_annotate(
+    img,
+    text,
+    location = "+30+150",
+    color = text_color,
+    size = text_size,
+    font = text_font
+  )
+}
+image_path <-"help meme.png"
+text <- "me running to my TA everytime
+my code cant knit"
+create_meme(image_path, text)
+```
+<br>
+
+#### Question-6: Text Analysis Game  
+
+Develop a text analysis game in which the user inputs a sentence, and the R function provides statistics like the number of words, characters, and average word length. Reward the user with a "communication skill level" based on their input.
+
+**Solutions:**
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+communication_skill_level<-function(ave_word_length){
+  if (ave_word_length >= 12){
+    return("pro")
+  }else if(ave_word_length >=7){
+    return("average")
+  }else{
+    return("poor")
+  }
+}
+input_sentence<-function(){
+  sentence<-readline("put sentence here ")
+  num_of_chars<-nchar(sentence)
+  words<-strsplit(sentence, split= " ")
+  num_of_words<-lengths(words)
+  ave_word_length<-sum(nchar(words))/num_of_words
+  print(num_of_chars)
+  print(num_of_words)
+  print(ave_word_length)
+  print(communication_skill_level(ave_word_length))
+}
+```
+<br>
