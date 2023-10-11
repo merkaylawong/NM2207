@@ -1,0 +1,418 @@
+---
+title: "Week 7 challenge"
+author: "Merkayla Wong"
+date: "2023-10-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Question 1: Palmer Penguins
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+library(tidyverse)
+library(palmerpenguins)
+glimpse(penguins)
+```
+
+#### Question 1.2:Plot Palmer Penguins
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(data = penguins, mapping = aes(x = bill_depth_mm, y = bill_length_mm, colour = species)) + # specifying x and y
+  geom_point() + #represent each observation with a point
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", 
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species", #map species to to the color of each point
+       caption = "Source: Palmer Station LTER / palmerpenguins package") + #add caption for data source
+  scale_colour_viridis_d()#discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+
+####Question 1.3:Palmer Penguins: colour
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins) + aes(x = bill_depth_mm, y = bill_length_mm,
+ colour = species) + # specifying x and y
+ geom_point() + #represent each observation with a point
+  scale_colour_viridis_d() #discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+
+####Question 1.4:Palmer Penguins: shape 
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = species,#specifying x and y
+ shape = island)) + #shaoe of points of islands
+ geom_point() + #represent each observation with a point
+  scale_colour_viridis_d() #discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+
+####Question 1.5:Palmer Penguins: shape 
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = species,#specifying x and y
+ shape = species)) + #shape of points of species
+ geom_point() + #represent each observation with a point
+  scale_colour_viridis_d() #discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+
+####Question 1.6:Palmer Penguins: size 
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = species, shape = species,
+ size = body_mass_g)) + #size of points by body mass
+ geom_point() +  #represent each observation with a point
+  scale_colour_viridis_d() #discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+
+####Question 1.7:Palmer Penguins: Alpha
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, colour = species,
+ shape = species, size = body_mass_g, alpha = flipper_length_mm)) + #alpha of points by flipperlength
+ geom_point() + #represent each observation with a point
+  scale_colour_viridis_d()#discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+####Question 1.8:Palmer Penguins: Mapping vs Setting
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins) +
+ aes(x = bill_depth_mm,
+ y = bill_length_mm,
+ size = body_mass_g,
+ alpha = flipper_length_mm) +
+ geom_point()
+```
+
+```{r, eval=TRUE,echo=TRUE}
+ggplot(penguins) +
+ aes(x = bill_depth_mm,
+ y = bill_length_mm) +
+ geom_point(size = 2, alpha = 0.5)
+```
+
+####Question 1.9:Palmer Penguins: Faceting
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins) +
+ aes(x = bill_depth_mm,
+ y = bill_length_mm) +
+ geom_point() + #represent each observation with a point
+ facet_grid(species ~ island) #create smaller plots that display different subsets of the data
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + geom_point() + #represent each observation with a point
+ facet_grid(species ~ sex)#create smaller plots that display different subsets of the data
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + geom_point() + #represent each observation with a point
+facet_grid(sex ~ species)#create smaller plots that display different subsets of the data base on sex and species
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + geom_point() + #represent each observation with a point
+facet_wrap(~ species)#create smaller plots that display different subsets of the data base on species not sex
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + geom_point() + #represent each observation with a point
+facet_wrap(~ species, ncol = 2)#create smaller plots that display different subsets of the data base on species, arranged in 2 columns
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + geom_point() + #represent each observation with a point
+facet_wrap(. ~ species)#create smaller plots that display different subsets of the data base on species
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
+ geom_point() + #represent each observation with a point
+  facet_grid(species ~ sex) + #create smaller plots that display different subsets of the data base on sex and species
+    scale_color_viridis_d()#discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+```
+
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)) +
+ geom_point() + #represent each observation with a point
+  facet_grid(species ~ sex) + #create smaller plots that display different subsets of the data base on sex and species
+    scale_color_viridis_d() + #discrete colour scale that is designed to be perceived by viewers with common forms of colour blindness
+      guides(color = "none") #  Remove the color legend.
+```
+
+####Question 2: Lending set
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+library(openintro)
+glimpse(loans_full_schema)#peek at data
+```
+
+####Question 2.1: Lending set: Selected variables
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+loans <- loans_full_schema %>%
+ select(loan_amount, interest_rate, term, grade,
+ state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+
+####Question 2.2: Lending set: Histogram
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans) + aes(x = loan_amount) +
+ geom_histogram() # Create a histogram plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis.
+```
+
+####Question 2.3: Lending set: Histograms and binwidth=100
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+# binwidth = 1000
+ggplot(loans, aes(x = loan_amount)) +
+ geom_histogram(binwidth = 1000) # Create a histogram plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis and specified binwidth of 1000.
+```
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+# binwidth = 1000
+ggplot(loans, aes(x = loan_amount)) +
+ geom_histogram(binwidth = 5000) # Create a histogram plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis and specified binwidth of 5000.
+```
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+# binwidth = 1000
+ggplot(loans, aes(x = loan_amount)) +
+ geom_histogram(binwidth = 2000) # Create a histogram plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis and specified binwidth of 2000.
+```
+
+####Question 2.4: Lending set: Customizing histograms
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount)) + geom_histogram(binwidth = 5000) + # Create a histogram plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis and a specified binwidth of 5000.
+ labs(x = "Loan amount ($)", y = "Frequency", title = "Amounts of Lending Club loans" ) # Add labels to the x-axis, y-axis, and title of the plot for clarity.
+```
+
+####Question 2.5: Lending set: Fill with a categorical variable
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
+ geom_histogram(binwidth = 5000, alpha = 0.5) + #specifies binwidth and setsalpha transparency to 0.5 for the bars
+ labs(x = "Loan amount ($)",y = "Frequency",title = "Amounts of Lending Club loans")
+```
+
+####Question 2.6: Lending set: Density plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount)) +
+ geom_density() # Creates a kernel density plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis.
+```
+
+####Question 2.7: Lending set: Density plots and adjusting bandwidth
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount)) +
+ geom_density(adjust = 0.5) # Creates a kernel density plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis, and adjust the smoothing bandwidth to 0.5.
+```
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount)) +
+ geom_density(adjust = 1) # default bandwidth
+# Creates a kernel density plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis, and adjust the smoothing bandwidth to 1
+```
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount)) +
+ geom_density(adjust = 2) # Creates a kernel density plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis, and adjust the smoothing bandwidth to 2.
+```
+
+####Question 2.7: Lending set: Customizing density plots
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount)) +
+ geom_density(adjust = 2) +  # Creates a kernel density plot of loan amounts from the 'loans' dataset with 'loan_amount' on the x-axis, and adjust the smoothing bandwidth to 2.
+ labs( x = "Loan amount ($)", y = "Density", title = "Amounts of Lending Club loans" ) # Add labels to the x-axis, y-axis, and title of the plot for clarity.
+```
+
+####Question 2.8: Lending set:Adding a categorical variable
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
+ geom_density(adjust = 2, alpha = 0.5) + # Add a density plot layer to the plot with a smoothing bandwidth adjustment of 2 and set the transparency of the density curves to 0.5.
+  labs(x = "Loan amount ($)",y = "Density",title = "Amounts of Lending Club loans", fill = "Homeownership") #Add labels to the x-axis, y-axis, and title of the plot for clarity, and label the legend as "Homeownership" for the fill colors.
+```
+
+####Question 2.9: Lending set:Box plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = interest_rate)) + # Create a ggplot object using the 'loans' dataset, specifying 'interest_rate' for the x-axis.
+ geom_boxplot() # Add a boxplot layer to the plot to visualize the distribution of interest rates.
+```
+
+###Question 2.10: Lending set:Box plot and outliers
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = annual_income)) + # Create a ggplot object using the 'loans' dataset, specifying 'annual_income' for the x-axis
+ geom_boxplot() #Add a boxplot layer to the plot to visualize the distribution of annual income.
+```
+
+###Question 2.11: Lending set:Customizing box plots
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot() + # Add a boxplot layer to the plot to visualize the distribution of interest rates.
+    labs(x = "Interest rate (%)",y = NULL,
+ title = "Interest rates of Lending Club loans") + # Add a label to the x-axis, remove the label for the y-axis, and set the title of the plot.
+ theme( axis.ticks.y = element_blank(), axis.text.y = element_blank() ) # Customize the appearance of the y-axis by removing ticks and text.
+```
+
+###Question 2.12: Lending set:Adding a categoric variable
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = interest_rate,
+ y = grade)) + # Create a ggplot object using the 'loans' dataset, specifying 'interest_rate' for the x-axis and 'grade' for the y-axis.
+ geom_boxplot() + # Add a boxplot layer to the plot to visualize the distribution of interest rates for different grades.
+geom_boxplot() +
+ labs(x = "Interest rate (%)",y = "Grade",title = "Interest rates of Lending Club loans",subtitle ="by grade of loan") # Add labels to the x-axis and y-axis, as well as a title and a subtitle to the plot for clarity.
+```
+
+###Question 2.13: Lending set:Scatterplot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +  # Add a scatterplot layer to the plot to visualize the relationship between debt-to-income ratio and interest rates.
+ geom_point()
+```
+
+###Question 2.14: Lending set:Hex Plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) + # Add a hexbin plot layer to the plot to visualize the relationship between debt-to-income ratio and interest rates using hexagonal bins.
+ geom_hex()
+```
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans %>% filter(debt_to_income < 100),
+ aes(x = debt_to_income, y = interest_rate)) +
+ geom_hex()
+```
+
+###Question 2.15: Lending set:Bar Plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = homeownership)) +
+ geom_bar()
+```
+
+###Question 2.16: Lending set:Segmented bar plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = homeownership,
+ fill = grade)) +
+ geom_bar()
+```
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+ geom_bar(position = "fill")
+```
+
+###Question 2.17: Lending set: Customiszing bar plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(y = homeownership, fill = grade)) + geom_bar(position = "fill") +
+labs( x = "Proportion", y = "Homeownership", fill = "Grade", title = "Grades of Lending Club loans", subtitle = "and homeownership of lendee")
+```
+
+###Question 2.18: Lending set: Violin plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+ggplot(loans, aes(x = homeownership, y = loan_amount)) +
+ geom_violin()
+```
+
+###Question 2.19: Lending set: Ridge plot
+
+**Solutions:** 
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+library(ggridges)
+ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
+ geom_density_ridges(alpha = 0.5) # Add a density ridge plot layer to visualize the distribution of loan amounts by grade, with transparency set to 0.5.
+```
