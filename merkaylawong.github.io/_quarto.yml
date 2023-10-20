@@ -6,11 +6,9 @@ website:
   title: "Merkayla"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
+      - index.qmd
       - about.qmd
-      - href: NM2207.qmd
-        text: NM2207
+      - NM2207.qmd
       
 
 format:
