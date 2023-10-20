@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: merkaylawong.github.io/docs
 
 website:
   title: "Merkayla"
