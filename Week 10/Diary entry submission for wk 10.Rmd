@@ -1,0 +1,50 @@
+---
+title: "Diary entry submission for wk 10"
+author: "Merkayla Wong"
+date: "2023-10-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Week 9 
+(1) What is the topic that you have finalized? (Answer in 1 or 2 sentences)
+Upon scrolling data.gov, I was interested in finding out more about resale flat prices, particularly since I am graduating soon and will be looking for one. My final topic is **Resale flat prices based on registration date from Jan-2017 onwards**. In question 2 I will describe why I chose this data set.
+
+(2) What are the data sources that you have curated so far? (Answer 1 or 2 sentences)
+https://beta.data.gov.sg/datasets/d_8b84c4ee58e3cfc0ece0d773c8ca6abc/view 
+The data set was chosen as it is up to date spannig from 2017 till now and also, alot of data is being collected on this particular topic (it comprises of 11 columns).
+
+
+Week 10
+(1) What is the question that you are going to answer? (Answer: One sentence that ends with a question mark that could act like the title of your data story)
+What Key Insights Can Help New Prospective Buyers Make Informed Purchasing Decisions?
+
+(2) Why is this an important question? (Answer: 3 sentences, each of which has some evidence, e.g., “According to the United Nations...” to justify why the question you have chosen is important),
+
+This question is important as it delves into the micro-level analysis of the housing market, focusing on a specific property type (for eg,3-room flats) in a particular town (for eg,Ang Mo Kio) at a precise time (for eg, January 2017). 
+
+Affordability: According to the Straits Times Singapore in 2021, affordability for housing are key issues for young Singaporeans.New prospective buyers often have budget constraints. For eg, understanding the factors that influence 3-room flat prices in a specific location can help them determine whether Ang Mo Kio is an affordable choice.
+
+Property Selection: Insights into factors like flat size, lease duration, and flat model can help buyers decide which property suits their needs best.
+
+Market Trends: Buyers need to be aware of market trends and fluctuations to make informed decisions about the timing of their purchase.
+
+(3) Which rows and columns of the dataset will be used to answer this question? (Answer: Actual names of the variables in the dataset that you plan to use).
+Include the challenges and errors that you faced and how you overcame them.
+
+Rows: All rows
+Columns:
+Month: To filter for January 2017.
+Town: To focus on Ang Mo Kio.
+Flat type: To isolate 3-room flats.
+Floor area sqm: To consider the size of the flats.
+Flat model: To understand the impact of different flat models on prices.
+Lease commence date: To account for lease duration.
+Resale price: The primary variable of interest.
+
+Data Integrity: Ensuring data accuracy and completeness, including handling any missing or inconsistent values. Data cleaning can be employed to address this issue.
+
+Outliers: Identifying and addressing outliers, which may skew price trends, is essential. Statistical techniques, such as z-scores or the IQR method, can help detect and manage outliers.
