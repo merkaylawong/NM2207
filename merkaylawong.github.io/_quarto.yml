@@ -1,16 +1,18 @@
 project:
   type: website
-  output-dir: /docs
-  output-format: html
+  output-dir: /merkaylawong.github.io/docs
 
 website:
   title: "Merkayla"
   navbar:
     left:
-      - index.qmd
+      - href: index.qmd
+        text: Home
       - about.qmd
-      - NM2207.qmd
-      
+      - href: NM2207.qmd
+        text: NM2207
+      - href: Visualisation project.qmd
+        text: Visualisation Project
 
 format:
   html:
