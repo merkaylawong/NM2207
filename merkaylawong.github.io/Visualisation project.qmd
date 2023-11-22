@@ -1,0 +1,68 @@
+---
+title: "Visualization project"
+format: html
+editor: visual
+---
+
+<iframe height="400" width="120%" frameborder="no" src="https://merkaylawong.shinyapps.io/maps03/"> </iframe>
+<iframe height="400" width="120%" frameborder="no" src="https://merkaylawong.shinyapps.io/app3/"> </iframe>
+```{r, out.height= "350px",out.width= "550px",echo=FALSE,eval=TRUE}
+#| warning: false
+options(repos = c(CRAN = "https://cran.r-project.org"))
+
+ 
+suppressWarnings({
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    install.packages("ggplot2")
+  }
+  library(ggplot2)
+})
+suppressWarnings({
+  if (!requireNamespace("leaflet", quietly = TRUE)) {
+    install.packages("leaflet")
+  }
+  library(leaflet)
+})
+library(shiny)
+suppressWarnings({
+  if (!requireNamespace("plotly", quietly = TRUE)) {
+    install.packages("plotly")
+  }
+  library(plotly)
+})
+suppressWarnings({
+  if (!requireNamespace("tidyverse", quietly = TRUE)) {
+    install.packages("tidyverse")
+  }
+  library(tidyverse)
+})
+library(stringr)
+library(readxl)
+library(lubridate)
+library(conflicted)
+
+conflict_prefer("filter", "plotly")
+conflict_prefer("lag", "dplyr")
+conflicts_prefer(plotly::layout)
+# Read the data
+housing_data1 <- read.csv("mydataset.csv", header = TRUE, stringsAsFactors = TRUE)
+
+# Remove NAs
+housing_data1 <- na.omit(housing_data1)
+
+# Summarize data by town
+data <- housing_data1 %>%
+  group_by(town) %>%
+  summarize(MedianResalePrice = median(resale_price))
+
+# Rename columns
+data <- data %>%
+  rename(Town = town)
+
+# Plot the data using ggplot2
+ggplot(data, aes(x = Town, y = MedianResalePrice)) +
+  geom_col(fill = "#1CB8FB") +
+  scale_y_continuous(labels = scales::number_format(scale = 1e-6)) +
+  coord_flip() +
+  labs(title = "Median Resale Price of HDB across Singapore", x = "Town", y = "Median Resale Price (million)")
+```
