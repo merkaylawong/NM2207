@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Merkayla - Visualiationproject</title>
+<title>Merkayla - Exploring HDB Resale Prices in Singapore (2023)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,14 +108,23 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#exploring-spatial-patterns-through-an-interactive-map." id="toc-exploring-spatial-patterns-through-an-interactive-map." class="nav-link" data-scroll-target="#exploring-spatial-patterns-through-an-interactive-map.">Exploring Spatial Patterns through an interactive map.</a></li>
+  <li><a href="#analyzing-flat-types-through-an-interactive-dropdown-graph." id="toc-analyzing-flat-types-through-an-interactive-dropdown-graph." class="nav-link" data-scroll-target="#analyzing-flat-types-through-an-interactive-dropdown-graph.">Analyzing Flat Types through an interactive dropdown graph.</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Visualiationproject</h1>
+<h1 class="title">Exploring HDB Resale Prices in Singapore (2023)</h1>
 </div>
 
 
@@ -130,17 +139,42 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<iframe height="400" width="120%" frameborder="no" src="https://merkaylawong.shinyapps.io/maps03/">
-</iframe>
-<iframe height="400" width="120%" frameborder="no" src="https://merkaylawong.shinyapps.io/app3/">
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>Singapore’s housing market is a dynamic landscape, and comprehending the resale prices of Housing and Development Board (HDB) flats is pivotal for both prospective home buyers and policymakers. As I prepare to graduate and embark on the journey of finding a place in Singapore, my curiosity led me to explore resale flat prices on <a href="https://beta.data.gov.sg/datasets/d_8b84c4ee58e3cfc0ece0d773c8ca6abc/view">data.gov</a>.</p>
+<p>It is commonly hypothesized that regions closer to the city center, such as those in proximity to the Central Business District (CBD), are expected to exhibit higher median resale prices for HDB flats in 2023 due to increased convenience and accessibility and hence, more comfortable and desirable to live at.</p>
+<p>In this data story, I wanted to take a closer look at the median resale prices of different flat types across various regions in Singapore for the year 2023, and see if this hypothesis is true.</p>
+<p>Hopefully, this could also provide valuable insights for those planning their property purchases in the upcoming year.</p>
+</section>
+<section id="exploring-spatial-patterns-through-an-interactive-map." class="level3">
+<h3 class="anchored" data-anchor-id="exploring-spatial-patterns-through-an-interactive-map.">Exploring Spatial Patterns through an interactive map.</h3>
+<p>The first visualization is an interactive map of Singapore, where each dot represents a region, and the color and size of the dots signify the median resale price. Hovering over a dot reveals a pop-up with the median resale price for that region in 2023. The insights from this map highlight that regions closer to the city center tend to be more expensive, possibly due to their convenience and proximity to the CBD area and resultantly thought to be more comfortable to live at.</p>
+<div style="display: flex; gap: 10px;">
+<iframe height="400px" width="800px" frameborder="no" src="https://merkaylawong.shinyapps.io/maps03/">
 </iframe>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="Visualisation-project_files/figure-html/unnamed-chunk-1-1.png" width="550" height="350"></p>
+<p><img src="Visualisation-project_files/figure-html/unnamed-chunk-1-1.png" width="640" height="400"></p>
 </div>
 </div>
+</div>
+<p>However, some anomalies are observed, where certain central areas are priced lower than expected. More desk research reveals that estate maturity might be a contributing factor to these anomalies. Mature estates are often characterized by having older flats that may have undergone wear and tear over the years, potentially impacting their resale prices compared to newer developments in non-mature estates. Moreover, mature estates may have limited opportunities for large-scale redevelopment compared to non-mature estates. This limitation can influence the perception of future growth potential and, subsequently, resale prices.</p>
+<p>An example of these anomalies include places like Toa Payoh, Ang Mo Kio and Bedok. More information on mature vs non-mature estates can be found <a href="https://www.channelnewsasia.com/singapore/national-day-rally-2023-hdb-classification-mature-non-mature-estates-3711641">here</a>.</p>
+</section>
+<section id="analyzing-flat-types-through-an-interactive-dropdown-graph." class="level3">
+<h3 class="anchored" data-anchor-id="analyzing-flat-types-through-an-interactive-dropdown-graph.">Analyzing Flat Types through an interactive dropdown graph.</h3>
+<p>Following that, I took a closer look at the various flat types and their average resale prices.</p>
+<p>The last visualization is an interactive dropdown graph, allowing viewers to select specific flat types (2 room, 3 room, 4 room, multigenerational, executive, or one room) for analysis. The x-axis displays regions that have the selected flat type in 2023, while the y-axis shows the average resale prices. Each bar includes information on the total number of flats sold in that region for the chosen flat type.</p>
+<iframe height="500" width="120%" frameborder="no" src="https://merkaylawong.shinyapps.io/app3/">
+</iframe>
+<p>The analysis revealed that while there is a notable correlation between the general price trends observed in the specific regions seen in the interactive map above and in this graph, it was observed that there is a positive association between the prevalence of larger flat types further away from the central area; where smaller flat types are more common. This meant that larger-sized flats are not only more abundant but also more affordable in regions distanced from the central locale, challenging the presupposed notion of increased comfortability associated with central locations. These findings allude to a nuanced relationship involving flat size preferences, demand dynamics, and spatial considerations, collectively shaping the intricate pricing trends observed in Singapore’s housing market.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Contrary to the hypothesis that regions closer to the city center would exhibit higher median resale prices as buyers pay for comfortability, the data uncovered unexpected intricacies. The interactive map indicated the anticipated spatial patterns but anomalies in certain central areas highlighted the impact of estate maturity. Further analysis revealed a surprising positive association between larger flat types and regions farther from the central area, challenging assumptions of comfortability linked to central locations. This short data story underscores the complex interplay between flat size preferences, demand dynamics, and spatial considerations in Singapore’s housing market.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
