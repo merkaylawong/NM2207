@@ -1,0 +1,76 @@
+---
+title: "Diary entry submissions for week 12"
+author: "Merkayla Wong"
+date: "2023-11-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Week 9 
+(1) What is the topic that you have finalized? (Answer in 1 or 2 sentences)
+Upon scrolling data.gov, I was interested in finding out more about resale flat prices, particularly since I am graduating soon and will be looking for a place in Singapore. My final topic is Exploring HDB Resale Prices in Singapore for the year 2023. In question 2 I will describe why I chose this data set.
+
+
+(2) What are the data sources that you have curated so far? (Answer 1 or 2 sentences)
+https://beta.data.gov.sg/datasets/d_8b84c4ee58e3cfc0ece0d773c8ca6abc/view 
+The data set was chosen as it is very comprehensive.  It is up to date spannig from 2017 till now and also, alot of data is being collected on this particular topic (it comprises of 11 columns).
+
+
+Week 10
+(1) What is the question that you are going to answer? (Answer: One sentence that ends with a question mark that could act like the title of your data story)
+
+Do regions nearer the city center anticipate higher median resale prices for HDB flats in 2023, driven by enhanced convenience and accessibility, rendering them more comfortable and desirable living spaces?
+
+
+(2) Why is this an important question? (Answer: 3 sentences, each of which has some evidence, e.g., “According to the United Nations...” to justify why the question you have chosen is important),
+
+The question of whether regions closer to the city center have higher median resale prices is crucial for prospective homebuyers and policymakers to understand housing dynamics in Singapore. Evidence from the data story reveals that spatial patterns in median resale prices provide insights into the accessibility and convenience factors influencing property values. Furthermore, understanding anomalies in pricing, such as certain central areas being priced lower is essential for refining housing policies and informing potential homebuyers about nuanced considerations in different regions.
+
+-Affordability: According to the Straits Times Singapore in 2021, affordability for housing are key issues for young Singaporeans.New prospective buyers often have budget constraints. For eg, understanding the factors that influence 3-room flat prices in a specific location can help them determine whether Ang Mo Kio is an affordable choice.
+
+
+-Property Selection: Insights into factors like flat size or location can help buyers decide which property suits their needs best.
+
+
+-Market Trends: Buyers need to be aware of market trends and fluctuations to make informed decisions about the timing of their purchase.
+
+
+(3) Which rows and columns of the dataset will be used to answer this question? (Answer: Actual names of the variables in the dataset that you plan to use).
+Include the challenges and errors that you faced and how you overcame them.
+
+The rows i am using are those that are in the year 2023.
+As for columns, these are the column that I will be using “month”, “town”, “flat type” and lastly, “resale price”. Some challenges includes filtering the year to 2023, as it was together with the month under the “month” column. The median resale price must also be calculated for the the year 2023 to get median resale price.
+
+
+Week 11
+(1) List the visualizations that you are going to use in your project (Answer: What are the variables that you are going to plot? How will it answer your larger question?),
+
+The first visualization involves an interactive map of Singapore, where regions of the city are plotted as dots. By hovering over these dots, users can access information on the median resale prices of flats in each region during the year 2023. This spatial representation allows for a nuanced exploration of how housing prices are distributed geographically, providing a contextual understanding of the overall market landscape.
+The second visualization takes the form of a non-interactive bar graph, where each bar corresponds to a specific region in Singapore. The variable plotted is the median resale price of flats in each region for the year 2023. This static graph serves as a quick reference for users to see the median resale prices across different areas. 
+The third visualization is an interactive dropdown menu graph. The variables plotted include the x-axis representing regions of Singapore, the y-axis representing resale prices of different flat types (2 room, 3 room, 4 room, multigenerational, executive, one room), and the bar heights indicating the total number of flats sold in each region for the selected flat type. This dynamic graph empowers users to focus on specific flat types, exploring how resale prices vary across regions. Additionally, the inclusion of the total number of flats sold offers insights into the demand for different types of flats in different areas.
+
+(2) How do you plan to make it interactive? (Answer: features of ggplot2/shiny/markdown do you plan to use to make the story interactive),
+
+For the Interactive map, users can hover over the map to view different median resale prices across Singapore.
+In the dropdown option, i can make it interactive by including user input where users can view different flat types.
+
+(3) What concepts incorporated in your project were taught in the course and which ones were self-learnt? (Answer: Create a table with topics in one column and Weeks in the other to indicate which concept taught in which week is being used. Leave the entry of the Week column empty for self-learnt concepts)
+
+```{r}
+Table <- data.frame(Concept= c("ggplot","shiny","Creating new columns and extracting data","ggplot2 visualising data", "Integration shiny into quarto","Choosing what are the suitable graphs for the data presented","Self learnt leaflet by watching YouTube and searching online for examples","Learnt to troubleshoot when upload to GitHub") , Weeks =c("Week 2","Week 2","Week 4","Week 7","Week 8","Week 10","NA","NA"))
+Table
+```
+
+Week 12
+(1) When I was deciding to plot the interactive map, I realised there was no geographical data for me to reference alongside with the town data in the dataset. Hence I needed to source the geographical data of each town on my own to find the various latitude and altitude values that were required in the map plot. After finding the various values, I had to manually key into a dataset as I could not find the file for such data, I could only get raw values from the internet. 
+
+While I was plotting the map, I was also unfamiliar with the use of leaflet and it took me a while after watching a few YouTube videos. There were also a few errors that I have encounter along the way with the map plot such as missing reference variables when plotting the map. In the end I found out the mistake was due to an extra filter function that was unnecessary and it cause some data to be filtered out, leaving the data that was used to plot having less entries than expected.
+
+
+
+
+
+

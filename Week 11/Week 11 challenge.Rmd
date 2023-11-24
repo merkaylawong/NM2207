@@ -1,0 +1,17 @@
+---
+title: "Week 11"
+author: "Merkayla Wong"
+date: "2023-11-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, eval=TRUE,echo=TRUE}
+# Enter code here
+library(httr)
+library(jsonlite)
+library(tidyverse)
+```

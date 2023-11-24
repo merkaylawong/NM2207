@@ -1,0 +1,21 @@
+---
+title: "Diary entry submissions for week 9"
+author: "Merkayla Wong"
+date: "2023-10-27"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Week 9 
+(1) What is the topic that you have finalized? (Answer in 1 or 2 sentences)
+Upon scrolling data.gov, I was interested in finding out more about resale flat prices, particularly since I am graduating soon and will be looking for a place in Singapore. My final topic is Exploring HDB Resale Prices in Singapore for the year 2023. In question 2 I will describe why I chose this data set.
+
+
+(2) What are the data sources that you have curated so far? (Answer 1 or 2 sentences)
+https://beta.data.gov.sg/datasets/d_8b84c4ee58e3cfc0ece0d773c8ca6abc/view 
+The data set was chosen as it is very comprehensive.  It is up to date spannig from 2017 till now and also, alot of data is being collected on this particular topic (it comprises of 11 columns).
+
+

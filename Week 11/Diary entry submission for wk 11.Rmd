@@ -1,7 +1,7 @@
 ---
-title: "Diary entry submissions for week 10"
+title: "Diary entry submissions for week 11"
 author: "Merkayla Wong"
-date: "2023-11-02"
+date: "2023-11-09"
 output: html_document
 ---
 
@@ -45,5 +45,22 @@ The rows i am using are those that are in the year 2023.
 As for columns, these are the column that I will be using “month”, “town”, “flat type” and lastly, “resale price”. Some challenges includes filtering the year to 2023, as it was together with the month under the “month” column. The median resale price must also be calculated for the the year 2023 to get median resale price.
 
 
+Week 11
+(1) List the visualizations that you are going to use in your project (Answer: What are the variables that you are going to plot? How will it answer your larger question?),
 
+The first visualization involves an interactive map of Singapore, where regions of the city are plotted as dots. By hovering over these dots, users can access information on the median resale prices of flats in each region during the year 2023. This spatial representation allows for a nuanced exploration of how housing prices are distributed geographically, providing a contextual understanding of the overall market landscape.
+The second visualization takes the form of a non-interactive bar graph, where each bar corresponds to a specific region in Singapore. The variable plotted is the median resale price of flats in each region for the year 2023. This static graph serves as a quick reference for users to see the median resale prices across different areas. 
+The third visualization is an interactive dropdown menu graph. The variables plotted include the x-axis representing regions of Singapore, the y-axis representing resale prices of different flat types (2 room, 3 room, 4 room, multigenerational, executive, one room), and the bar heights indicating the total number of flats sold in each region for the selected flat type. This dynamic graph empowers users to focus on specific flat types, exploring how resale prices vary across regions. Additionally, the inclusion of the total number of flats sold offers insights into the demand for different types of flats in different areas.
+
+(2) How do you plan to make it interactive? (Answer: features of ggplot2/shiny/markdown do you plan to use to make the story interactive),
+
+For the Interactive map, users can hover over the map to view different median resale prices across Singapore.
+In the dropdown option, i can make it interactive by including user input where users can view different flat types.
+
+(3) What concepts incorporated in your project were taught in the course and which ones were self-learnt? (Answer: Create a table with topics in one column and Weeks in the other to indicate which concept taught in which week is being used. Leave the entry of the Week column empty for self-learnt concepts)
+
+```{r}
+Table <- data.frame(Concept= c("ggplot","shiny","Creating new columns and extracting data","ggplot2 visualising data", "Integration shiny into quarto","Choosing what are the suitable graphs for the data presented","Self learnt leaflet by watching YouTube and searching online for examples","Learnt to troubleshoot when upload to GitHub") , Weeks =c("Week 2","Week 2","Week 4","Week 7","Week 8","Week 10","NA","NA"))
+Table
+```
 
