@@ -1,0 +1,106 @@
+--- 
+title: "Exploring HDB Resale Prices in Singapore (2023)"
+format: html
+editor: visual
+---
+Do regions nearer the city center anticipate higher median resale prices for HDB flats, driven by enhanced convenience and accessibility, rendering them more comfortable and desirable living spaces?
+
+### Introduction
+``````{r, out.height = "410px", out.width = "100%", echo = FALSE, eval = TRUE, fig.cap = "<span style='color: darkgrey;'>HDB flats at Rochor Centre. Photo by Gaya Chandramohan.</span>"}
+knitr::include_graphics("hdb.png")
+```
+Singapore's housing market is a dynamic landscape, and comprehending the resale prices of Housing and Development Board (HDB) flats is pivotal for both prospective home buyers and policymakers. As I prepare to graduate and embark on the journey of finding a place in Singapore, my curiosity led me to explore resale flat prices on [data.gov](https://beta.data.gov.sg/datasets/d_8b84c4ee58e3cfc0ece0d773c8ca6abc/view). 
+
+It is commonly hypothesized  that regions closer to the city center, such as those in proximity to the Central Business District (CBD), are expected to exhibit higher median resale prices for HDB flats in 2023 due to increased convenience and accessibility and hence, more comfortable and desirable to live at.
+
+In this data story, I wanted to take a closer look at the median resale prices of different flat types across various regions in Singapore for the year 2023, and see if this hypothesis is true.
+
+Hopefully, this could also provide valuable insights for those planning their property purchases in the upcoming year.
+
+### Exploring Spatial Patterns through an interactive map.
+The first visualization is an interactive map of Singapore, where each dot represents a region, and the color and size of the dots signify the median resale price. Hovering over a dot reveals a pop-up with the median resale price for that region in 2023. The insights from this map highlight that regions closer to the city center tend to be more expensive, possibly due to their convenience and proximity to the CBD area and resultantly thought to be more comfortable to live at.
+
+
+<div style="display: flex; gap: 10px;">
+
+<iframe height="400px" width="800px" frameborder="no" src="https://merkaylawong.shinyapps.io/maps03/"> </iframe>
+
+```{r, out.height= "400px",out.width= "640px",echo=FALSE,eval=TRUE} 
+#| warning: false
+options(repos = c(CRAN = "https://cran.r-project.org"))
+ 
+suppressWarnings({
+  if (!requireNamespace("ggplot2", quietly = TRUE)) {
+    install.packages("ggplot2")
+  }
+  library(ggplot2)
+})
+suppressWarnings({
+  if (!requireNamespace("leaflet", quietly = TRUE)) {
+    install.packages("leaflet")
+  }
+  library(leaflet)
+})
+library(shiny)
+suppressWarnings({
+  if (!requireNamespace("plotly", quietly = TRUE)) {
+    install.packages("plotly")
+  }
+  library(plotly)
+})
+suppressWarnings({
+  if (!requireNamespace("tidyverse", quietly = TRUE)) {
+    install.packages("tidyverse")
+  }
+  library(tidyverse)
+})
+library(stringr)
+library(readxl)
+library(lubridate)
+library(conflicted)
+
+conflict_prefer("filter", "plotly")
+conflict_prefer("lag", "dplyr")
+conflicts_prefer(plotly::layout)
+# Read the data
+
+data2 = read.csv("mydataset.csv", header = TRUE, stringsAsFactors = TRUE)
+data2 %>%
+  na.omit() %>%
+  separate(month,into=c("year","month"), sep = "-") %>%
+  filter(year=="2023")-> data
+
+
+# Summarize data by town
+data %>%
+  group_by(town) %>%
+  summarize(MedianResalePrice = median(resale_price))->data
+
+# Rename columns
+data <- data %>%
+  rename(Town = town)
+
+# Plot the data using ggplot2
+ggplot(data, aes(x = Town, y = MedianResalePrice)) +
+  geom_col(fill = "#1BC8FB") +
+  scale_y_continuous(labels = scales::number_format(scale = 1e-6)) +
+  coord_flip() +
+  labs(title = "Median Resale Price of HDB across Singapore", x = "Town", y = "Median Resale Price (million)")
+```
+</div>
+However, some anomalies are observed, where certain central areas are priced lower than expected. More desk research reveals that estate maturity might be a contributing factor to these anomalies. Mature estates are often characterized by having older flats that may have undergone wear and tear over the years, potentially impacting their resale prices compared to newer developments in non-mature estates. Moreover, mature estates may have limited opportunities for large-scale redevelopment compared to non-mature estates. This limitation can influence the perception of future growth potential and, subsequently, resale prices. 
+
+An example of these anomalies include places like Toa Payoh, Ang Mo Kio and Bedok. More information on mature vs non-mature estates can be found [here](https://www.channelnewsasia.com/singapore/national-day-rally-2023-hdb-classification-mature-non-mature-estates-3711641).
+
+### Analyzing Flat Types through an interactive dropdown graph.
+Following that, I took a closer look at the various flat types and their average resale prices.
+
+The last visualization is an interactive dropdown graph, allowing viewers to select specific flat types (2 room, 3 room, 4 room, multigenerational, executive, or one room) for analysis. The x-axis displays regions that have the selected flat type in 2023, while the y-axis shows the average resale prices. Each bar includes information on the total number of flats sold in that region for the chosen flat type.
+
+<iframe height="500" width="120%" frameborder="no" src="https://merkaylawong.shinyapps.io/app3/"> </iframe>
+
+The analysis revealed that while there is a notable correlation between the general price trends observed in the specific regions seen in the interactive map above and in this graph, it was observed that there is a positive association between the prevalence of larger flat types further away from the central area; where smaller flat types are more common. This meant that larger-sized flats are not only more abundant but also more affordable in regions distanced from the central locale, challenging the presupposed notion of increased comfortability associated with central locations. These findings allude to a nuanced relationship involving flat size preferences, demand dynamics, and spatial considerations, collectively shaping the intricate pricing trends observed in Singapore's housing market.
+
+
+### Conclusion
+Contrary to the hypothesis that regions closer to the city center would exhibit higher median resale prices as buyers pay for comfortability, the data uncovered unexpected intricacies. The interactive map indicated the anticipated spatial patterns but anomalies in certain central areas highlighted the impact of estate maturity. Further analysis revealed a surprising positive association between larger flat types and regions farther from the central area, challenging assumptions of comfortability linked to central locations. This short data story underscores the complex interplay between flat size preferences, demand dynamics, and spatial considerations in Singapore's housing market.

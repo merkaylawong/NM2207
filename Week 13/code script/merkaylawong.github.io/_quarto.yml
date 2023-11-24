@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: ./docs
+
+website:
+  title: "Merkayla"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - href: NM2207.qmd
+        text: NM2207
+      - href: Visualisation project.qmd
+        text: Visualisation Project
+
+format:
+  html:
+    theme: morph
+    css: styles.css
+    toc: true
+
+editor: visual
+
